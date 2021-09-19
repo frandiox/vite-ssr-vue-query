@@ -1,15 +1,13 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, inject } from "vue";
 import { useQueryProvider } from "vue-query";
-import { useContext } from "vite-ssr/vue";
 import { VueQueryDevTools } from "vue-query/devtools";
 
 export default defineComponent({
   name: "App",
   components: { VueQueryDevTools },
   setup() {
-    const { initialState } = useContext();
-    useQueryProvider(initialState.vueQuery);
+    useQueryProvider(inject("vueQueryClient"));
   },
 });
 </script>
